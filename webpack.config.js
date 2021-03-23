@@ -11,7 +11,7 @@ function resolve(dir) {
 module.exports = {
   mode: 'development',
   entry: {
-    app: './demo/main.js',
+    app: './examples/main.js',
   },
   output: {
     filename: '[name].bundle.js',

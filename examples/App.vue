@@ -1,9 +1,8 @@
 <template>
   <div class="cpt-app">
-    <div class="menus">
+    <!-- <div class="menus">
       <router-link to="/">Simple</router-link>
-      <router-link to="/complex">Complex</router-link>
-    </div>
+    </div> -->
     <div class="container">
       <router-view></router-view>
     </div>

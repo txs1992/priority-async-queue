@@ -24,11 +24,13 @@
         "src/*"
       ],
       "@/*": [
-        "demo/*"
+        "examples/*"
       ],
     },
     "typeRoots": [
-      "node_modules/@types"
+      "node_modules/@types",
+      "dist/typings",
+      "typings"
     ],
   },
   "include": [

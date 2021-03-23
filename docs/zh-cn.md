@@ -1,20 +1,20 @@
-<h1 align="center">async-orderly-queue</h1>
+<h1 align="center">priority-async-queue</h1>
 
 <p align="center">
-  <a href="http://img.shields.io/travis/txs1992/async-orderly-queue.svg">
-    <img src="http://img.shields.io/travis/txs1992/async-orderly-queue.svg" />
+  <a href="http://img.shields.io/travis/txs1992/priority-async-queue.svg">
+    <img src="http://img.shields.io/travis/txs1992/priority-async-queue.svg" />
   </a>
-  <a href="https://img.shields.io/npm/dt/async-orderly-queue.svg">
-    <img src="https://img.shields.io/npm/dt/async-orderly-queue.svg" />
+  <a href="https://img.shields.io/npm/dt/priority-async-queue.svg">
+    <img src="https://img.shields.io/npm/dt/priority-async-queue.svg" />
   </a>
-  <a href="https://img.shields.io/npm/dm/async-orderly-queue.svg">
-    <img src="https://img.shields.io/npm/dm/async-orderly-queue.svg" />
+  <a href="https://img.shields.io/npm/dm/priority-async-queue.svg">
+    <img src="https://img.shields.io/npm/dm/priority-async-queue.svg" />
   </a>
-  <a href="https://img.shields.io/npm/v/async-orderly-queue.svg">
-    <img src="https://img.shields.io/npm/v/async-orderly-queue.svg" />
+  <a href="https://img.shields.io/npm/v/priority-async-queue.svg">
+    <img src="https://img.shields.io/npm/v/priority-async-queue.svg" />
   </a>
-  <a href="https://img.shields.io/npm/l/async-orderly-queue.svg">
-    <img src="https://img.shields.io/npm/l/async-orderly-queue.svg" />
+  <a href="https://img.shields.io/npm/l/priority-async-queue.svg">
+    <img src="https://img.shields.io/npm/l/priority-async-queue.svg" />
   </a>
   <a href="https://img.shields.io/node/v/passport.svg">
     <img src="https://img.shields.io/node/v/passport.svg" />
@@ -23,11 +23,11 @@
 
 <div align="center">
   <h3>
-    <a href="https://github.com/txs1992/async-orderly-queue#readme">
+    <a href="https://github.com/txs1992/priority-async-queue#readme">
       English
     </a>
     <span> | </span>
-    <a href="https://github.com/txs1992/async-orderly-queue/blob/master/docs/zh-cn.md#readme">
+    <a href="https://github.com/txs1992/priority-async-queue/blob/master/docs/zh-cn.md#readme">
       中文
     </a>
   </h3>
@@ -53,17 +53,17 @@
 | `el` | Element | 需要被绑定的 DOM 元素 | true | - |
 | `callback` | Function  | 绑定元素触发 outside 事件时执行的处理函数 | true | - |
 | `key` | String/Function | 将需要绑定的元素或者函数进行分组，同一组元素互相点击不会触发 outside 事件，点击这一组元素之外的元素则会触发 outside 事件。| false | `callback` function |
-| `className` | String  | 给元素绑定的自定义类名 | false | "async-orderly-queue" |
+| `className` | String  | 给元素绑定的自定义类名 | false | "priority-async-queue" |
 
 ## 使用 FocusOutside
 
 ```js
-// import { bind, unbidn } from 'async-orderly-queue'
+// import { bind, unbidn } from 'priority-async-queue'
 // 建议使用下面这种别名，防止和你的函数命名冲突了。
-import { bind: focusBind, unbind: focusUnbind } from 'async-orderly-queue'
+import { bind: focusBind, unbind: focusUnbind } from 'priority-async-queue'
 
 // 如果你是使用 CDN 引入的，应该这样使用。
-// <script src="https://unpkg.com/async-orderly-queue@0.5.2/lib/index.js"></script>
+// <script src="https://unpkg.com/priority-async-queue@0.5.2/lib/index.js"></script>
 // const { bind: focusBind, unbind: focusUnbind } = FocusOutside
 
 const elm = document.querySelector('#dorpdown-button')
@@ -82,7 +82,7 @@ function callback () {
 
 ```shell
 1. fork 项目，然后 clone 到本地
-git clone git@github.com:txs1992/async-orderly-queue.git
+git clone git@github.com:txs1992/priority-async-queue.git
 
 2. 安装依赖(请确保您的电脑安装了 Node.js)
 npm install
