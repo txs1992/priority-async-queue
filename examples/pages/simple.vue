@@ -1,6 +1,6 @@
 <template>
   <div class="page-simple">
-    <el-button type="mini">Send Request</el-button>
+    <el-button type="mini" @click="send">Send Request</el-button>
   </div>
 </template>
 

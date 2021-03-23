@@ -59,7 +59,7 @@ export default class PriorityAsyncQueue {
     }
   }
 
-  private async call(callback: any) {
+  async call(callback: any) {
     if (callback) {
       const iterator = this.generator()
       while (true) {
