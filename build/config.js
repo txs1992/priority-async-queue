@@ -29,15 +29,15 @@ const inputOptions = {
 }
 
 const outputOptions = {
-  name: 'PriorityAsyncQueue',
-  file: 'dist/priority-async-queue.js',
+  name: 'PriorityPromiseQueue',
+  file: 'dist/priority-promise-queue.js',
   format: 'umd',
 }
 
 const minInputOptions = { ...inputOptions, plugins: buildPlugins }
 const minOutputOptions = {
   ...outputOptions,
-  file: 'dist/priority-async-queue.min.js',
+  file: 'dist/priority-promise-queue.min.js',
 }
 
 build(inputOptions, outputOptions)

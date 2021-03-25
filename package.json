@@ -1,7 +1,7 @@
 {
-  "name": "priority-async-queue",
-  "version": "1.0.1",
-  "main": "dist/priority-async-queue.min.js",
+  "name": "priority-promise-queue",
+  "version": "0.0.1",
+  "main": "dist/priority-promise-queue.min.js",
   "scripts": {
     "clear": "rm -rf dist/ && rm -rf bundle.js",
     "build": "npm run clear && node build/config.js && cp -r typings/ dist/typings",
@@ -11,7 +11,7 @@
     "precommit": "pretty-quick --staged",
     "serve": "npm run lint && npm run format && webpack-dev-server --inline --progress --config webpack.config.js"
   },
-  "typings": "typings/priority-async-queue.d.ts",
+  "typings": "typings/priority-promise-queue.d.ts",
   "author": "xusheng.tao <https://github.com/txs1992>",
   "license": "MIT",
   "devDependencies": {
@@ -58,15 +58,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/txs1992/priority-async-queue.git"
+    "url": "git+https://github.com/txs1992/priority-promise-queue.git"
   },
   "keywords": [
     "async-queue",
-    "priority-async-queue"
+    "promise-queue",
+    "priority-async",
+    "priority-promise",
+    "priority-async-queue",
+    "priority-promise-queue"
   ],
   "bugs": {
-    "url": "https://github.com/txs1992/priority-async-queue/issues"
+    "url": "https://github.com/txs1992/priority-promise-queue/issues"
   },
-  "homepage": "https://github.com/txs1992/priority-async-queue#readme",
+  "homepage": "https://github.com/txs1992/priority-promise-queue#readme",
   "description": "Let the asynchronous queue respond to the results in the order in which it was requested，让异步队列按照请求的顺序响应结果。"
 }
