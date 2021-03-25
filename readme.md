@@ -35,7 +35,62 @@
 
 ## what is this
 
-> A good clickOutside library, which solves the problem that iframe cannot trigger clickOutside, and it supports grouping binding processing. 
+> Let the asynchronous queue respond to the results in the order in which it was requested. 
+
+## use examples
+```ts
+import PriorityPromiseQueue from 'priority-promise-queue'
+
+const ppq = new PriorityPromiseQueue()
+
+ppq.add(new Promise((resolve: any) => resolve('1')))
+ppq.add(new Promise((resolve: any) => setTimeout(() => resolve('2'), 100)))
+ppq.add(new Promise((resolve: any) => setTimeout(() => resolve('3'), 10)))
+ppq.add(new Promise((resolve: any) => resolve('4')))
+ppq.add([
+  new Promise((resolve: any) => setTimeout(() => resolve('5'), 300)),
+  new Promise((resolve: any) => resolve('6')),
+])
+
+ppq.call((result: any[], done: boolean) => {
+  result.forEach((item: any[]) => {
+    const [err, data] = item;
+    if (!err && data) {
+      // do something...
+    }
+  })
+
+  if (done) {
+    // end...
+  }
+})
+
+// Results of the
+// [[null, '1']], false
+// [[null, '2'],[null, '3'],[null, '4']], false
+// [[null, '5'],[null, '5']], true
+```
+
+## API
+
+| function | description | parameter |
+|:--------:|:--------:|:--------:|
+| `add` | Add Promise to the queue | Promise | [Promsie] |
+| `call` | Handle the response in the Promise column of the team | [[error, data]] The returned promise array, each item is an array containing error and data, error is null by default, if error exists, it means that the promise request reported an error |
+
+## Build a development environment
+
+```shell
+1. Fork project, then clone to local.
+git clone git@github.com:txs1992/priority-promise-queue.git
+
+2. Installation dependencies (make sure your computer has Node.js installed)
+yarn install
+
+3. run the project
+yarn serve
+```
+
 
 ## License
 
