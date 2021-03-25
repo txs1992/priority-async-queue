@@ -10,7 +10,7 @@ async function sleep(time = 0) {
     }
   })
 }
-export default class PriorityAsyncQueue {
+export default class PriorityPromiseQueue {
   // 等待的 promise 队列
   private waitMap: any = {}
   private sleepTime = 10

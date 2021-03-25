@@ -33,50 +33,48 @@
   </h3>
 </div>
 
-## 为什么要造这个轮子
+> 让 Promise 的队列按照指定的请求顺序返回响应结果。
 
-> 在公司的一次小组分享会上，[组长](https://github.com/coolzjy) 给我们分享了一个他在项目中遇到的一个问题。在一个嵌入 Iframe 的系统中，当我们点击 Dropdown 展开后，再去点击 Iframe 发现无法触发 Dropdown 的 clickOutside 事件，导致 Dropdown 无法收起。[查看示例](https://jsfiddle.net/_MT_/wLkgu614/29/)
->
-> 关于 Iframe 为什么不能触发 clickOutside 请阅读这篇文章 [如何优雅解决 Iframe 无法触发 clickOutside](https://txs1992.github.io/mt-blog/blog/click-outside.html)
+## 使用 PriorityPromiseQueue
+```ts
+import PriorityPromiseQueue from 'priority-promise-queue'
+
+const ppq = new PriorityPromiseQueue()
+
+ppq.add(new Promise((resolve: any) => resolve('1')))
+ppq.add(new Promise((resolve: any) => setTimeout(() => resolve('2'), 100)))
+ppq.add(new Promise((resolve: any) => setTimeout(() => resolve('3'), 10)))
+ppq.add(new Promise((resolve: any) => resolve('4')))
+ppq.add([
+  new Promise((resolve: any) => setTimeout(() => resolve('5'), 300)),
+  new Promise((resolve: any) => resolve('6')),
+])
+
+ppq.call((result: any[], done: boolean) => {
+  result.forEach((item: any[]) => {
+    const [err, data] = item;
+    if (!err && data) {
+      // do something...
+    }
+  })
+
+  if (done) {
+    // end...
+  }
+})
+
+// 执行结果  
+// [[null, '1']], false
+// [[null, '2'],[null, '3'],[null, '4']], false
+// [[null, '5'],[null, '5']], true
+```
 
 ## API
 
 | 函数 | 说明 | 参数 |
 |:--------:|:--------:|:--------:|
-| `bind ` | 为指定元素绑定一个回调函数，当元素失去焦点时触发绑定的回调函数 | `el`，`callback `，`key`， `className`，相关参数的的描述见下面的 `bind 函数 API` |
-| `unbind` | 取消元素绑定的函数 | `el`：元素节点 |
-
-## bind 函数 API
-
-| 参数 | 类型 | 说明 | 必选 | 默认值 |
-|:--------:|:--------:|:--------:|:--------:|:--------:|
-| `el` | Element | 需要被绑定的 DOM 元素 | true | - |
-| `callback` | Function  | 绑定元素触发 outside 事件时执行的处理函数 | true | - |
-| `key` | String/Function | 将需要绑定的元素或者函数进行分组，同一组元素互相点击不会触发 outside 事件，点击这一组元素之外的元素则会触发 outside 事件。| false | `callback` function |
-| `className` | String  | 给元素绑定的自定义类名 | false | "priority-promise-queue" |
-
-## 使用 FocusOutside
-
-```js
-// import { bind, unbidn } from 'priority-promise-queue'
-// 建议使用下面这种别名，防止和你的函数命名冲突了。
-import { bind: focusBind, unbind: focusUnbind } from 'priority-promise-queue'
-
-// 如果你是使用 CDN 引入的，应该这样使用。
-// <script src="https://unpkg.com/priority-promise-queue@0.5.2/lib/index.js"></script>
-// const { bind: focusBind, unbind: focusUnbind } = FocusOutside
-
-const elm = document.querySelector('#dorpdown-button')
-// 绑定函数
-focusBind(elm, callback)
-
-function callback () {
-  console.log('您点击了 dropdown 按钮外面的区域')
-  // 清除绑定
-  focusUnbind(elm)
-}
-```
-
+| `add` | 将 Promise 加入到队列中 | Promise | [Promsie] |
+| `call` | 处理队 Promise 列中的响应 | [[error, data]] 返回的承诺数组，每个子项都是包含了 error 和 data 的数组，error 默认是 null，如果 error 存在则表示该 promise 的请求报错了 |
 
 ## 搭建开发环境
 
@@ -85,7 +83,10 @@ function callback () {
 git clone git@github.com:txs1992/priority-promise-queue.git
 
 2. 安装依赖(请确保您的电脑安装了 Node.js)
-npm install
+yarn
+
+3. 运行
+yarn serve
 ```
 
 ## License
